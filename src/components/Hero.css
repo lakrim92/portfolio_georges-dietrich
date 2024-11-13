@@ -1,0 +1,21 @@
+#homePageBackgroundImageDivStyled {
+    background-image: url('/public/background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.greeting {
+    color: white;
+    margin-top: 20px;
+}
+
+.typing-carousel {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.arrow-center {
+    margin-top: 20px;
+    color: white;
+}
