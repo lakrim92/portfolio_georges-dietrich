@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import './Navbar.css';
 import 'flag-icon-css/css/flag-icons.min.css';
+import invertedLogo from '../assets/images/logos/inverted-logo.png';
+import sunLogo from '../assets/images/icons/sun-svgrepo-com.svg';
+import moonLogo from '../assets/images/icons/moon-svgrepo-com.svg';
+import computerLogo from '../assets/images/icons/computer-svgrepo-com.svg';
 
 const PortfolioNavbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [activeTab, setActiveTab] = useState('#home'); // État pour suivre l'onglet actif
+    const [activeTab, setActiveTab] = useState('#home');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,7 +22,6 @@ const PortfolioNavbar = () => {
         };
     }, []);
 
-    // Fonction pour gérer le changement d'onglet actif
     const handleTabClick = (tabId) => {
         setActiveTab(tabId);
     };
@@ -31,11 +34,7 @@ const PortfolioNavbar = () => {
         >
             <Container>
                 <Navbar.Brand href="/portfolio-georges" className="brand-link">
-                    <img
-                        src="/images/inverted-logo.png"
-                        id="logo"
-                        alt="Logo"
-                    />
+                    <img src={invertedLogo} id="logo" alt="Logo Inversé" />
                     Georges Dietrich - Portfolio
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="top-nav-items">
@@ -103,27 +102,27 @@ const PortfolioNavbar = () => {
 
                         {/* Language Selector */}
                         <NavDropdown title={<span><span className="flag-icon flag-icon-fr"></span> Français</span>} id="languageSelector">
-                            <NavDropdown.Item href="/en/portfolio-georges">
+                            <NavDropdown.Item href="/en/portfolio-georges" className="dropdown-link">
                                 <span className="flag-icon flag-icon-gb"></span> English
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="/portfolio-georges">
+                            <NavDropdown.Item href="/portfolio-georges" className="dropdown-link">
                                 <span className="flag-icon flag-icon-fr"></span> Français
                             </NavDropdown.Item>
                         </NavDropdown>
 
                         {/* Theme Selector */}
                         <NavDropdown
-                            title={<img id="navbar-theme-icon-svg" className="theme-icon svg-inverted" src="/icons/sun-svgrepo-com.svg" width="20" alt="Theme Icon" />}
+                            title={<img id="navbar-theme-icon-svg" className={`theme-icon svg-inverted ${isScrolled ? 'scrolled' : 'transparent'}`} src={sunLogo} width="20" alt="Theme Icon" />}
                             id="themeSelector"
                         >
-                            <NavDropdown.Item href="#" data-scheme="light">
-                                <img className="theme-icon" src="/icons/sun-svgrepo-com.svg" width="20" alt="Light Theme" />
+                            <NavDropdown.Item href="#" data-scheme="light" className="dropdown-link">
+                                <img className="theme-icon" src={sunLogo} width="20" alt="Light Theme" />
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#" data-scheme="dark">
-                                <img className="theme-icon" src="/icons/moon-svgrepo-com.svg" width="20" alt="Dark Theme" />
+                            <NavDropdown.Item href="#" data-scheme="dark" className="dropdown-link">
+                                <img className="theme-icon" src={moonLogo} width="20" alt="Dark Theme" />
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#" data-scheme="system">
-                                <img className="theme-icon" src="/icons/computer-svgrepo-com.svg" width="20" alt="System Theme" />
+                            <NavDropdown.Item href="#" data-scheme="system" className="dropdown-link">
+                                <img className="theme-icon" src={computerLogo} width="20" alt="System Theme" />
                             </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>

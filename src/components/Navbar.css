@@ -6,26 +6,24 @@
     height: 50px;
     z-index: 99999;
     padding-top: 0.4rem;
-    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+    transition: background-color 0.5s ease-out, color 0.3s ease-out;
     position: sticky;
     top: 0;
     left: 0;
     right: 0;
 }
 
-/* Style de la barre de navigation en mode transparent */
+/* Styles de la barre de navigation en mode transparent */
 .top-navbar.transparent-navbar {
     background-color: transparent;
     color: #CBD5E1;
 }
 
-/* Style des liens de la navbar en mode transparent */
 .top-navbar.transparent-navbar .nav-link,
 .top-navbar.transparent-navbar .brand-link {
     color: #CBD5E1 !important;
 }
 
-/* Style pour les liens survolés dans le mode transparent */
 .top-navbar.transparent-navbar .nav-link:hover,
 .top-navbar.transparent-navbar .brand-link:hover {
     color: #0891B2 !important;
@@ -33,29 +31,21 @@
     background: rgba(8, 145, 178, 0.1);
 }
 
-/* Style de la barre de navigation lorsqu'elle est scrollée */
+/* Styles de la barre de navigation lorsqu'elle est scrollée */
 .top-navbar.scrolled-navbar {
     background-color: #F8FAFC;
     color: #1E293B;
 }
 
-/* Style des liens dans la navbar scrollée */
 .top-navbar.scrolled-navbar .nav-link,
 .top-navbar.scrolled-navbar .brand-link {
     color: #1E293B;
 }
 
-/* Style au survol des liens dans la navbar scrollée */
 .top-navbar.scrolled-navbar .nav-link:hover,
 .top-navbar.scrolled-navbar .brand-link:hover {
     color: #0891B2 !important;
     text-decoration-color: #0891B2;
-}
-
-/* Assurer la couleur du texte dans les autres états */
-.top-navbar.transparent-navbar .nav-link:focus,
-.top-navbar.transparent-navbar .brand-link:focus {
-    color: #CBD5E1 !important;
 }
 
 /* Structure et alignement de la navbar */
@@ -88,7 +78,7 @@
     }
 }
 
-/* Transition pour la sidebar (pour un effet similaire au .sidebar-section) */
+/* Transition pour la sidebar en mode mobile */
 @media (max-width: 767px) {
     .navbar-collapse {
         display: none;
@@ -116,71 +106,90 @@
         text-align: center;
         color: #1E293B;
     }
+
+    /* Styles pour les liens dans le menu déroulant (mobile) */
+    .navbar-collapse.show .nav-link:hover,
+    .navbar-collapse.show .nav-link.active {
+        color: #0891B2 !important;
+        border-bottom: 2px solid #0891B2 !important;
+        background: rgba(8, 145, 178, 0.1);
+        transition: all ease-out 0.3s;
+    }
 }
 
-/* Thème sombre (similarité avec .sidebar-section pour dark mode) */
-html[data-theme='dark'] {
-    .top-navbar {
-        background-color: #1E293B;
-        color: #CBD5E1;
-    }
+/* Thème sombre */
+html[data-theme='dark'] .top-navbar {
+    background-color: #1E293B;
+    color: #CBD5E1;
+}
 
-    .top-navbar .nav-link,
-    .top-navbar .brand-link {
-        color: #CBD5E1;
-    }
+html[data-theme='dark'] .top-navbar .nav-link,
+html[data-theme='dark'] .top-navbar .brand-link {
+    color: #CBD5E1;
+}
 
-    .top-navbar .nav-link:hover,
-    .top-navbar .brand-link:hover {
-        color: #0891B2 !important;
-    }
+html[data-theme='dark'] .top-navbar .nav-link:hover,
+html[data-theme='dark'] .top-navbar .brand-link:hover {
+    color: #0891B2 !important;
 }
 
 /* Style pour l'onglet actif */
-.top-navbar .navbar-nav .active .nav-link {
-    color: #0891b2 !important;
-    border-bottom: 2px solid #0891b2 !important;
-    background: rgba(66, 141, 160, 0.1);
-    transition: all ease-out .3s;
-}
-
-/* Style des liens au survol */
-.top-navbar .navbar-nav .nav-link:hover,
-.top-navbar .navbar-nav .brand-link:hover {
-    color: #0891b2 !important;
-    border-bottom: 2px solid #0891b2 !important;
-    background: rgba(8, 145, 178, 0.1);
-}
-
-/* Ajout des mêmes styles pour l'onglet actif que ceux du survol */
-.top-navbar .navbar-nav .active a:hover {
-    color: #0891b2 !important;
-    background: rgba(8, 145, 178, 0.1);
-    border-bottom: 2px solid #0891b2 !important;
-}
-
-/* Assurer que l'onglet actif garde les styles après un clic */
-.top-navbar .navbar-nav .active .nav-link {
-    color: #0891b2 !important;
-    border-bottom: 2px solid #0891b2 !important;
-    background: rgba(8, 145, 178, 0.1);
-    transition: all ease-out .3s;
-}
-
-.nav-link.active {
-    color: #0891b2 !important;
-    border-bottom: 2px solid #0891b2 !important;
+.top-navbar .navbar-nav .active .nav-link,
+.top-navbar .navbar-nav .nav-link.active {
+    color: #0891B2 !important;
+    border-bottom: 2px solid #0891B2 !important;
     background: rgba(8, 145, 178, 0.1);
     transition: all ease-out 0.3s;
-    
-}#logo {
+}
+
+/* Style pour les liens et icônes au survol */
+.top-navbar .navbar-nav .nav-link:hover,
+.top-navbar .navbar-nav .brand-link:hover,
+.top-navbar .navbar-nav .nav-link img:hover,
+.top-navbar .navbar-nav .brand-link img:hover {
+    color: #0891B2 !important;
+    border-bottom: 2px solid #0891B2 !important;
+    background: rgba(8, 145, 178, 0.1);
+    transition: all ease-out 0.3s;
+}
+
+/* Dimensions du logo */
+#logo {
     width: 42px;
     height: 42px;
     padding: 5px;
 }
 
+/* Dimensions des icônes de drapeau */
 .flag-icon {
     width: 16px !important;
     height: 16px !important;
-    margin: 3px, 3px, 0px, 0px;
+    margin: 3px 3px 0 0;
+}
+
+/* Styles pour les icônes de sélection de thème */
+.top-navbar .navbar-nav .nav-link img {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease-out;
+}
+
+.top-navbar .navbar-nav .nav-link.active img {
+    border-bottom: 2px solid #0891B2 !important;
+    background-color: rgba(8, 145, 178, 0.1);
+}
+
+/* Ajustements pour les logos SVG en mode transparent et scrollé */
+.top-navbar.transparent-navbar .theme-icon.transparent {
+    filter: brightness(0) invert(1);
+    color: #CBD5E1;
+}
+
+.top-navbar.scrolled-navbar .theme-icon.scrolled {
+    filter: brightness(0) invert(0);
+    color: #1E293B;
+}
+
+.theme-icon {
+    transition: filter 0.3s ease, color 0.3s ease;
 }

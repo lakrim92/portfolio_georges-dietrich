@@ -2,7 +2,7 @@
   "name": "site_pro",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://lakrim92.github.io/site-pro/",
+  "homepage": "https://lakrim92.github.io/portfolio_georges-dietrich/",
   "dependencies": {
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
