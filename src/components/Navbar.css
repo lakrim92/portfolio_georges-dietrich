@@ -146,11 +146,11 @@ html[data-theme='dark'] .top-navbar .brand-link:hover {
 .top-navbar .navbar-nav .nav-link:hover,
 .top-navbar .navbar-nav .brand-link:hover,
 .top-navbar .navbar-nav .nav-link img:hover,
-.top-navbar .navbar-nav .brand-link img:hover {
+.top-navbar .navbar-nav .brand-link img:hover,
+.dropdown-link:hover {
     color: #0891B2 !important;
     border-bottom: 2px solid #0891B2 !important;
     background: rgba(8, 145, 178, 0.1);
-    transition: all ease-out 0.3s;
 }
 
 /* Dimensions du logo */
@@ -158,6 +158,24 @@ html[data-theme='dark'] .top-navbar .brand-link:hover {
     width: 42px;
     height: 42px;
     padding: 5px;
+    transition: filter 0.3s ease;
+}
+
+/* Logo au format SVG ou image lorsque la barre de navigation est transparente */
+.top-navbar.transparent-navbar .theme-icon.transparent {
+    filter: brightness(0) invert(1);
+    color: #CBD5E1;
+}
+
+/* Logo au format SVG ou image lorsque la barre de navigation est en mode scrollé */
+.top-navbar.scrolled-navbar .theme-icon.scrolled {
+    filter: brightness(0) invert(0);
+    color: #1E293B;
+}
+
+/* Assurez-vous que le logo s'affiche correctement */
+.theme-icon {
+    transition: filter 0.3s ease, color 0.3s ease;
 }
 
 /* Dimensions des icônes de drapeau */
@@ -179,17 +197,96 @@ html[data-theme='dark'] .top-navbar .brand-link:hover {
     background-color: rgba(8, 145, 178, 0.1);
 }
 
-/* Ajustements pour les logos SVG en mode transparent et scrollé */
-.top-navbar.transparent-navbar .theme-icon.transparent {
-    filter: brightness(0) invert(1);
-    color: #CBD5E1;
+/* Menu déroulant */
+.dropdown-toggle::after {
+    content: '\f0d7';
+    /* flèche vers le bas */
+    font-family: 'FontAwesome';
+    margin-left: 10px;
 }
 
-.top-navbar.scrolled-navbar .theme-icon.scrolled {
-    filter: brightness(0) invert(0);
+/* Styles pour le menu déroulant */
+.top-navbar .dropdown-menu.show {
+    max-height: 100vh;
+    visibility: visible;
+    transition: all ease-out .3s;
+}
+
+/* Position des éléments du dropdown à gauche */
+.dropdown-menu .dropdown-item {
     color: #1E293B;
+    padding-left: 1rem;
+    padding-right: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all 0.3s ease;
 }
 
-.theme-icon {
-    transition: filter 0.3s ease, color 0.3s ease;
+/* Style au survol d'un item du menu déroulant */
+.navbar .dropdown-item:hover {
+    background-color: rgba(8, 145, 178, 0.1);
+    color: #0891B2 !important;
+}
+
+/* Style pour les éléments actifs dans le menu déroulant */
+.dropdown-item.active,
+.dropdown-item:focus {
+    background-color: rgba(8, 145, 178, 0.2) !important;
+    color: #0891B2 !important;
+}
+
+/* Styles pour le texte dans le menu déroulant */
+.dropdown-menu .dropdown-item {
+    color: #1E293B;
+    padding: 10px 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Styles pour l'élément actif dans le menu déroulant */
+.dropdown-menu .dropdown-item.active {
+    background-color: rgba(8, 145, 178, 0.1);
+    color: #0891B2;
+}
+
+/* Liens du menu déroulant selon les variables Bootstrap */
+:root {
+    --bs-nav-link-padding-x: 0;
+    --bs-nav-link-padding-y: .5rem;
+    --bs-nav-link-font-weight: normal;
+    --bs-nav-link-color: var(--bs-navbar-color);
+    --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
+    --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color);
+}
+
+/* Utilisation des variables dans les liens */
+.navbar-nav .nav-link {
+    padding-left: var(--bs-nav-link-padding-x);
+    padding-right: var(--bs-nav-link-padding-x);
+    padding-top: var(--bs-nav-link-padding-y);
+    padding-bottom: var(--bs-nav-link-padding-y);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: var(--bs-nav-link-color);
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--bs-nav-link-hover-color);
+}
+
+/* Taille du menu Theme Selector */
+#themeSelector .dropdown-menu {
+    max-width: 48px !important;
+    min-width: 48px !important;
+    padding: 0;
+    display: block;
+}
+
+/* Taille du menu Language Selector (largeur différente) */
+#languageSelector .dropdown-menu {
+    max-width: 120px !important;
+    min-width: 120px !important;
+    padding: 0;
+    display: block;
 }

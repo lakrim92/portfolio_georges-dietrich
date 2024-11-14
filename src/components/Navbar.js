@@ -10,6 +10,7 @@ import computerLogo from '../assets/images/icons/computer-svgrepo-com.svg';
 const PortfolioNavbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeTab, setActiveTab] = useState('#home');
+    const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,6 +27,10 @@ const PortfolioNavbar = () => {
         setActiveTab(tabId);
     };
 
+    const toggleLanguageMenu = () => {
+        setIsLanguageMenuOpen(!isLanguageMenuOpen);
+    };
+
     return (
         <Navbar
             expand="xl"
@@ -34,7 +39,7 @@ const PortfolioNavbar = () => {
         >
             <Container>
                 <Navbar.Brand href="/portfolio-georges" className="brand-link">
-                    <img src={invertedLogo} id="logo" alt="Logo Inversé" />
+                    <img src={invertedLogo} id="logo" alt="Logo Inversé" className={isScrolled ? 'scrolled-logo' : 'transparent-logo'} />
                     Georges Dietrich - Portfolio
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="top-nav-items">
@@ -101,7 +106,16 @@ const PortfolioNavbar = () => {
                         </Nav.Link>
 
                         {/* Language Selector */}
-                        <NavDropdown title={<span><span className="flag-icon flag-icon-fr"></span> Français</span>} id="languageSelector">
+                        <NavDropdown
+                            title={
+                                <span style={{ color: isLanguageMenuOpen ? '#000000' : undefined }}>
+                                    <span className="flag-icon flag-icon-fr"></span> Français
+                                </span>
+                            }
+                            id="languageSelector"
+                            onToggle={toggleLanguageMenu}
+                            className="language-dropdown"
+                        >
                             <NavDropdown.Item href="/en/portfolio-georges" className="dropdown-link">
                                 <span className="flag-icon flag-icon-gb"></span> English
                             </NavDropdown.Item>
@@ -114,6 +128,7 @@ const PortfolioNavbar = () => {
                         <NavDropdown
                             title={<img id="navbar-theme-icon-svg" className={`theme-icon svg-inverted ${isScrolled ? 'scrolled' : 'transparent'}`} src={sunLogo} width="20" alt="Theme Icon" />}
                             id="themeSelector"
+                            className="theme-dropdown"
                         >
                             <NavDropdown.Item href="#" data-scheme="light" className="dropdown-link">
                                 <img className="theme-icon" src={sunLogo} width="20" alt="Light Theme" />
@@ -133,3 +148,5 @@ const PortfolioNavbar = () => {
 }
 
 export default PortfolioNavbar;
+
+
