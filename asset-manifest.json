@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/portfolio_georges-dietrich/static/css/main.bafc3c82.css",
-    "main.js": "/portfolio_georges-dietrich/static/js/main.5f534a8c.js",
+    "main.css": "/portfolio_georges-dietrich/static/css/main.00525b3f.css",
+    "main.js": "/portfolio_georges-dietrich/static/js/main.cef87ed2.js",
     "static/js/488.a500b9d7.chunk.js": "/portfolio_georges-dietrich/static/js/488.a500b9d7.chunk.js",
     "static/media/do.svg": "/portfolio_georges-dietrich/static/media/do.3ecb625b75ec64be4376.svg",
     "static/media/inverted-logo.png": "/portfolio_georges-dietrich/static/media/inverted-logo.92de245e76f32dc6b6bc.png",
@@ -274,12 +274,12 @@
     "static/media/pl.svg": "/portfolio_georges-dietrich/static/media/pl.cd835d05865e496ff6b8.svg",
     "static/media/de.svg": "/portfolio_georges-dietrich/static/media/de.6435bf24d148ca7248e7.svg",
     "static/media/bd.svg": "/portfolio_georges-dietrich/static/media/bd.0ad8c443ef4d47ea0497.svg",
-    "main.bafc3c82.css.map": "/portfolio_georges-dietrich/static/css/main.bafc3c82.css.map",
-    "main.5f534a8c.js.map": "/portfolio_georges-dietrich/static/js/main.5f534a8c.js.map",
+    "main.00525b3f.css.map": "/portfolio_georges-dietrich/static/css/main.00525b3f.css.map",
+    "main.cef87ed2.js.map": "/portfolio_georges-dietrich/static/js/main.cef87ed2.js.map",
     "488.a500b9d7.chunk.js.map": "/portfolio_georges-dietrich/static/js/488.a500b9d7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bafc3c82.css",
-    "static/js/main.5f534a8c.js"
+    "static/css/main.00525b3f.css",
+    "static/js/main.cef87ed2.js"
   ]
 }
