@@ -1,6 +1,4 @@
-/* Navbar.css */
-
-/* Style de base pour la barre de navigation */
+/* ----- BASE STYLES ----- */
 .top-navbar {
     width: 100%;
     height: 50px;
@@ -13,51 +11,83 @@
     right: 0;
 }
 
-/* Styles de la barre de navigation en mode transparent */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+}
+
+/* Styles avant scroll : texte et logo de couleur #CBD5E1 */
 .top-navbar.transparent-navbar {
     background-color: transparent;
     color: #CBD5E1;
 }
 
 .top-navbar.transparent-navbar .nav-link,
-.top-navbar.transparent-navbar .brand-link {
-    color: #CBD5E1 !important;
+.top-navbar.transparent-navbar .brand-link,
+.top-navbar.transparent-navbar .navbar-brand {
+    color: #CBD5E1;
 }
 
-.top-navbar.transparent-navbar .nav-link:hover,
-.top-navbar.transparent-navbar .brand-link:hover {
-    color: #0891B2 !important;
-    text-decoration-color: #0891B2;
-    background: rgba(8, 145, 178, 0.1);
+/* Styles pour les icônes de thème dans la barre de navigation (avant scroll) */
+.top-navbar.transparent-navbar .navbar-theme-icon {
+    filter: brightness(0) invert(1);
 }
 
-/* Styles de la barre de navigation lorsqu'elle est scrollée */
-.top-navbar.scrolled-navbar {
+/* ----- LIGHT THEME SCROLLED ----- */
+html[data-theme='light'] .top-navbar.scrolled-navbar {
     background-color: #F8FAFC;
     color: #1E293B;
 }
 
-.top-navbar.scrolled-navbar .nav-link,
-.top-navbar.scrolled-navbar .brand-link {
+html[data-theme='light'] .top-navbar.scrolled-navbar .nav-link,
+html[data-theme='light'] .top-navbar.scrolled-navbar .brand-link,
+html[data-theme='light'] .top-navbar.scrolled-navbar .navbar-brand {
     color: #1E293B;
 }
 
-.top-navbar.scrolled-navbar .nav-link:hover,
-.top-navbar.scrolled-navbar .brand-link:hover {
-    color: #0891B2 !important;
+html[data-theme='light'] .top-navbar.scrolled-navbar .navbar-theme-icon {
+    filter: none;
+}
+
+/* ----- DARK THEME SCROLLED ----- */
+html[data-theme='dark'] .top-navbar.scrolled-navbar {
+    background-color: #1F2937;
+    color: #F1F5F9;
+}
+
+html[data-theme='dark'] .top-navbar.scrolled-navbar .nav-link,
+html[data-theme='dark'] .top-navbar.scrolled-navbar .brand-link,
+html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-brand {
+    color: #F1F5F9;
+}
+
+html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-theme-icon {
+    filter: none;
+}
+
+/* ----- HOVER STYLES ----- */
+.top-navbar .nav-link:hover,
+.top-navbar .brand-link:hover,
+.top-navbar .navbar-nav .dropdown-item:hover {
+    color: #0891B2;
     text-decoration-color: #0891B2;
+    background: rgba(8, 145, 178, 0.1);
+    border-bottom: 2px solid #0891B2;
+    transition: 0.3s ease-out;
 }
 
-/* Structure et alignement de la navbar */
-.navbar {
-    display: flex;
-    align-items: center;
-    padding: 0;
-    width: 100%;
-    justify-content: space-between;
+/* ----- ACTIVE LINK STYLES ----- */
+.top-navbar .navbar-nav .active {
+    color: rgb(8, 145, 178) !important;
+    background: rgba(8, 145, 178, 0.1);
+    transition: 0.3s ease-out;
+    border-bottom: 2px solid rgb(8, 145, 178) !important;
 }
 
-/* Médias responsive pour ajuster la taille de la navbar */
+/* ----- RESPONSIVE AND DROPDOWN MENU STYLES ----- */
 @media (max-width: 1200px) {
     .top-navbar {
         padding-top: 1rem;
@@ -78,7 +108,6 @@
     }
 }
 
-/* Transition pour la sidebar en mode mobile */
 @media (max-width: 767px) {
     .navbar-collapse {
         display: none;
@@ -107,53 +136,16 @@
         color: #1E293B;
     }
 
-    /* Styles pour les liens dans le menu déroulant (mobile) */
     .navbar-collapse.show .nav-link:hover,
     .navbar-collapse.show .nav-link.active {
-        color: #0891B2 !important;
-        border-bottom: 2px solid #0891B2 !important;
+        color: #0891B2;
+        border-bottom: 2px solid #0891B2;
         background: rgba(8, 145, 178, 0.1);
         transition: all ease-out 0.3s;
     }
 }
 
-/* Thème sombre */
-html[data-theme='dark'] .top-navbar {
-    background-color: #1E293B;
-    color: #CBD5E1;
-}
-
-html[data-theme='dark'] .top-navbar .nav-link,
-html[data-theme='dark'] .top-navbar .brand-link {
-    color: #CBD5E1;
-}
-
-html[data-theme='dark'] .top-navbar .nav-link:hover,
-html[data-theme='dark'] .top-navbar .brand-link:hover {
-    color: #0891B2 !important;
-}
-
-/* Style pour l'onglet actif */
-.top-navbar .navbar-nav .active .nav-link,
-.top-navbar .navbar-nav .nav-link.active {
-    color: #0891B2 !important;
-    border-bottom: 2px solid #0891B2 !important;
-    background: rgba(8, 145, 178, 0.1);
-    transition: all ease-out 0.3s;
-}
-
-/* Style pour les liens et icônes au survol */
-.top-navbar .navbar-nav .nav-link:hover,
-.top-navbar .navbar-nav .brand-link:hover,
-.top-navbar .navbar-nav .nav-link img:hover,
-.top-navbar .navbar-nav .brand-link img:hover,
-.dropdown-link:hover {
-    color: #0891B2 !important;
-    border-bottom: 2px solid #0891B2 !important;
-    background: rgba(8, 145, 178, 0.1);
-}
-
-/* Dimensions du logo */
+/* Logo général */
 #logo {
     width: 42px;
     height: 42px;
@@ -161,132 +153,73 @@ html[data-theme='dark'] .top-navbar .brand-link:hover {
     transition: filter 0.3s ease;
 }
 
-/* Logo au format SVG ou image lorsque la barre de navigation est transparente */
-.top-navbar.transparent-navbar .theme-icon.transparent {
-    filter: brightness(0) invert(1);
-    color: #CBD5E1;
+/* ----- MENU DÉROULANT LANGUAGE ----- */
+.language-dropdown {
+    font-size: 14px;
+    color: inherit;
 }
 
-/* Logo au format SVG ou image lorsque la barre de navigation est en mode scrollé */
-.top-navbar.scrolled-navbar .theme-icon.scrolled {
-    filter: brightness(0) invert(0);
-    color: #1E293B;
-}
-
-/* Assurez-vous que le logo s'affiche correctement */
-.theme-icon {
-    transition: filter 0.3s ease, color 0.3s ease;
-}
-
-/* Dimensions des icônes de drapeau */
-.flag-icon {
-    width: 16px !important;
-    height: 16px !important;
-    margin: 3px 3px 0 0;
-}
-
-/* Styles pour les icônes de sélection de thème */
-.top-navbar .navbar-nav .nav-link img {
-    width: 20px;
-    height: 20px;
-    transition: all 0.3s ease-out;
-}
-
-.top-navbar .navbar-nav .nav-link.active img {
-    border-bottom: 2px solid #0891B2 !important;
-    background-color: rgba(8, 145, 178, 0.1);
-}
-
-/* Menu déroulant */
-.dropdown-toggle::after {
-    content: '\f0d7';
-    /* flèche vers le bas */
-    font-family: 'FontAwesome';
-    margin-left: 10px;
-}
-
-/* Styles pour le menu déroulant */
-.top-navbar .dropdown-menu.show {
-    max-height: 100vh;
-    visibility: visible;
-    transition: all ease-out .3s;
-}
-
-/* Position des éléments du dropdown à gauche */
-.dropdown-menu .dropdown-item {
-    color: #1E293B;
-    padding-left: 1rem;
-    padding-right: 0;
-    height: 100%;
+.language-dropdown .dropdown-item {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    transition: all 0.3s ease;
-}
-
-/* Style au survol d'un item du menu déroulant */
-.navbar .dropdown-item:hover {
-    background-color: rgba(8, 145, 178, 0.1);
-    color: #0891B2 !important;
-}
-
-/* Style pour les éléments actifs dans le menu déroulant */
-.dropdown-item.active,
-.dropdown-item:focus {
-    background-color: rgba(8, 145, 178, 0.2) !important;
-    color: #0891B2 !important;
-}
-
-/* Styles pour le texte dans le menu déroulant */
-.dropdown-menu .dropdown-item {
-    color: #1E293B;
     padding: 10px 15px;
-    text-align: center;
-    transition: all 0.3s ease;
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Styles pour l'élément actif dans le menu déroulant */
-.dropdown-menu .dropdown-item.active {
+.language-dropdown .dropdown-item:hover {
     background-color: rgba(8, 145, 178, 0.1);
     color: #0891B2;
 }
 
-/* Liens du menu déroulant selon les variables Bootstrap */
-:root {
-    --bs-nav-link-padding-x: 0;
-    --bs-nav-link-padding-y: .5rem;
-    --bs-nav-link-font-weight: normal;
-    --bs-nav-link-color: var(--bs-navbar-color);
-    --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
-    --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color);
+.language-dropdown .dropdown-item.active {
+    background-color: #E2E8F0;
+    color: #0891B2;
+    font-weight: bold;
 }
 
-/* Utilisation des variables dans les liens */
-.navbar-nav .nav-link {
-    padding-left: var(--bs-nav-link-padding-x);
-    padding-right: var(--bs-nav-link-padding-x);
-    padding-top: var(--bs-nav-link-padding-y);
-    padding-bottom: var(--bs-nav-link-padding-y);
-    font-weight: var(--bs-nav-link-font-weight);
-    color: var(--bs-nav-link-color);
-}
-
-.navbar-nav .nav-link:hover {
-    color: var(--bs-nav-link-hover-color);
-}
-
-/* Taille du menu Theme Selector */
-#themeSelector .dropdown-menu {
-    max-width: 48px !important;
-    min-width: 48px !important;
+.language-dropdown .dropdown-menu {
     padding: 0;
-    display: block;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #F8FAFC;
+    border: none;
 }
 
-/* Taille du menu Language Selector (largeur différente) */
-#languageSelector .dropdown-menu {
-    max-width: 120px !important;
-    min-width: 120px !important;
-    padding: 0;
-    display: block;
+/* ----- RESPONSIVE MENU DÉROULANT ----- */
+@media (max-width: 767px) {
+    .language-dropdown .dropdown-menu {
+        width: 100%;
+        text-align: center;
+        background-color: #F8FAFC;
+    }
+
+    .language-dropdown .dropdown-item {
+        padding: 12px;
+        color: #1E293B;
+    }
+
+    .language-dropdown .dropdown-item:hover {
+        background-color: rgba(8, 145, 178, 0.1);
+    }
+}
+
+/* ----- ICONS & TEXT TRANSITIONS ----- */
+.top-navbar .nav-link,
+.top-navbar .brand-link,
+.top-navbar .navbar-theme-icon {
+    transition: color 0.3s ease, filter 0.3s ease;
+}
+
+.top-navbar .navbar-theme-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* ----- FLAG SIZE ----- */
+.language-dropdown .dropdown-item > img {
+    width: 16px !important;
+    height: 16px !important;
+    margin-right: 8px !important;
+    /* Un petit espace entre le drapeau et le texte */
 }
