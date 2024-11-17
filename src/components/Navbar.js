@@ -6,7 +6,7 @@ import { ThemeContext } from '../contexts/ThemeContext'; // Importez ThemeContex
 import invertedLogo from '../assets/images/logos/inverted-logo.png';
 import sunLogo from '../assets/images/icons/sun-svgrepo-com.svg';
 import moonLogo from '../assets/images/icons/moon-svgrepo-com.svg';
-import computerLogo from '../assets/images/icons/computer-svgrepo-com.svg';
+// import computerLogo from '../assets/images/icons/computer-svgrepo-com.svg';
 
 const PortfolioNavbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -150,14 +150,14 @@ const PortfolioNavbar = () => {
                             className="language-dropdown"
                         >
                             <NavDropdown.Item
-                                href="#"
+                                href="/src/pages/fr/PortfolioFrench.js"
                                 onClick={() => handleLanguageSelect('français', '/portfolio-georges')}
                                 className="dropdown-link"
                             >
                                 <span className="flag-icon flag-icon-fr" style={{ width: '16px', height: '16px', marginRight: '8px' }}></span> Français
                             </NavDropdown.Item>
                             <NavDropdown.Item
-                                href="#"
+                                href="/src/pages/en/PortfolioEnglish.js"
                                 onClick={() => handleLanguageSelect('anglais', '/en/portfolio-georges')}
                                 className="dropdown-link"
                             >
@@ -208,7 +208,7 @@ const PortfolioNavbar = () => {
                                     }}
                                 />
                                 {selectedLanguage === 'français' ? 'Thème Sombre' : 'Dark Theme'}
-                            </NavDropdown.Item>
+                            </NavDropdown.Item>²    
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
