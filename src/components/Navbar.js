@@ -6,7 +6,7 @@ import { ThemeContext } from '../contexts/ThemeContext'; // Importez ThemeContex
 import invertedLogo from '../assets/images/logos/inverted-logo.png';
 import sunLogo from '../assets/images/icons/sun-svgrepo-com.svg';
 import moonLogo from '../assets/images/icons/moon-svgrepo-com.svg';
-// import computerLogo from '../assets/images/icons/computer-svgrepo-com.svg';
+import computerLogo from '../assets/images/icons/computer-svgrepo-com.svg';
 
 const PortfolioNavbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -37,24 +37,29 @@ const PortfolioNavbar = () => {
     };
 
     const handleThemeChange = (selectedTheme) => {
-        toggleTheme(selectedTheme);
+        if (selectedTheme === 'system') {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            toggleTheme(prefersDark ? 'dark' : 'light');
+        } else {
+            toggleTheme(selectedTheme);
+        }
     };
 
     const navbarStyle = {
-        backgroundColor: theme === 'dark' ? 'transparent' : 'transparent', // Toujours transparent
-        color: theme === 'dark' ? '#CBD5E1' : '#CBD5E1', // Texte couleur par défaut
+        backgroundColor: isScrolled
+            ? theme === 'dark'
+                ? '#1F2937'
+                : '#F8FAFC'
+            : 'transparent',
+        color: isScrolled
+            ? theme === 'dark'
+                ? '#F1F5F9'
+                : '#1E293B'
+            : theme === 'dark'
+                ? '#CBD5E1'
+                : '#CBD5E1',
         transition: 'background-color 0.3s ease, color 0.3s ease',
     };
-
-    // Style au scroll
-    const scrolledStyle = {
-        backgroundColor: theme === 'dark' ? '#1F2937' : '#F8FAFC', // Couleur de fond au scroll
-        color: theme === 'dark' ? '#F1F5F9' : '#1E293B', // Couleur du texte au scroll
-    };
-
-    const finalNavbarStyle = isScrolled
-        ? { ...navbarStyle, ...scrolledStyle }
-        : navbarStyle;
 
     const toggleLanguageMenu = () => {
         setIsLanguageMenuOpen(!isLanguageMenuOpen);
@@ -65,24 +70,14 @@ const PortfolioNavbar = () => {
         window.location.href = href; // Redirige vers la langue sélectionnée
     };
 
-    // Couleur dynamique des icônes avant et après le scroll
-    const themeIconColor = isScrolled
-        ? theme === 'dark'
-            ? '#CBD5E1' // Sombre, scrollé
-            : '#1E293B' // Clair, scrollé
-        : theme === 'dark'
-            ? '#F1F5F9' // Sombre, non scrollé
-            : '#CBD5E1'; // Clair, non scrollé
-
-    // Le moonLogo garde toujours sa couleur #F1F5F9 en mode sombre
-    const moonLogoColor = theme === 'dark' ? '#F1F5F9' : isScrolled ? '#1E293B' : '#CBD5E1';
+    const themeIcon = theme === 'dark' ? moonLogo : theme === 'light' ? sunLogo : computerLogo;
 
     return (
         <Navbar
             expand="xl"
             className={`top-navbar ${isScrolled ? 'scrolled-navbar' : 'transparent-navbar'}`}
             fixed="top"
-            style={finalNavbarStyle}
+            style={navbarStyle}
         >
             <Container>
                 <Navbar.Brand href="/portfolio-georges">
@@ -138,11 +133,11 @@ const PortfolioNavbar = () => {
                         {/* Language Selector */}
                         <NavDropdown
                             title={
-                                <span style={{ color: isLanguageMenuOpen ? '#000000' : undefined }}>
+                                <span>
                                     <span className={`flag-icon ${selectedLanguage === 'français' ? 'flag-icon-fr' : 'flag-icon-gb'}`}
-                                        style={{ width: '16px', height: '16px', marginRight: '8px' }}
+                                        style={{ marginRight: '8px' }}
                                     ></span>
-                                    {selectedLanguage === 'français' ? 'Français' : 'English'}
+                                    {selectedLanguage}
                                 </span>
                             }
                             id="languageSelector"
@@ -150,65 +145,35 @@ const PortfolioNavbar = () => {
                             className="language-dropdown"
                         >
                             <NavDropdown.Item
-                                href="/src/pages/fr/PortfolioFrench.js"
                                 onClick={() => handleLanguageSelect('français', '/portfolio-georges')}
-                                className="dropdown-link"
                             >
-                                <span className="flag-icon flag-icon-fr" style={{ width: '16px', height: '16px', marginRight: '8px' }}></span> Français
+                                Français
                             </NavDropdown.Item>
                             <NavDropdown.Item
-                                href="/src/pages/en/PortfolioEnglish.js"
                                 onClick={() => handleLanguageSelect('anglais', '/en/portfolio-georges')}
-                                className="dropdown-link"
                             >
-                                <span className="flag-icon flag-icon-gb" style={{ width: '16px', height: '16px', marginRight: '8px' }}></span> English
+                                English
                             </NavDropdown.Item>
                         </NavDropdown>
 
                         {/* Theme Selector */}
                         <NavDropdown
-                            title={
-                                <img
-                                    className="navbar-theme-icon"
-                                    src={theme === 'dark' ? moonLogo : sunLogo}
-                                    width="20"
-                                    alt="Theme Icon"
-                                    style={{
-                                        filter: isScrolled ? 'none' : `invert(${theme === 'dark' ? '100%' : '0%'})`, // Applique l'inversion seulement quand non scrollé
-                                        color: themeIconColor, // Applique la couleur dynamique aux icônes de thème
-                                    }}
-                                />
-                            }
+                            title={<img src={themeIcon} alt="Theme Icon" width="20" />}
                             id="themeSelector"
                             className="theme-dropdown"
                         >
                             <NavDropdown.Item onClick={() => handleThemeChange('light')}>
-                                <img 
-                                    className="dropdown-theme-icon" 
-                                    src={sunLogo} 
-                                    width="16" 
-                                    alt="Light Theme Icon" 
-                                    style={{
-                                        width: '16px', 
-                                        height: '16px', 
-                                        marginRight: '8px', 
-                                        color: themeIconColor, // Applique la couleur dynamique aux icônes de sélection
-                                    }}
-                                />
+                                <img src={sunLogo} width="16" alt="Light" style={{ marginRight: '8px' }} />
                                 {selectedLanguage === 'français' ? 'Thème Clair' : 'Light Theme'}
                             </NavDropdown.Item>
                             <NavDropdown.Item onClick={() => handleThemeChange('dark')}>
-                                <img
-                                    className="dropdown-theme-icon"
-                                    src={moonLogo}
-                                    width="16"
-                                    alt="Dark Theme Icon"
-                                    style={{
-                                        color: moonLogoColor, // Applique la couleur dynamique au moonLogo en mode sombre
-                                    }}
-                                />
+                                <img src={moonLogo} width="16" alt="Dark" style={{ marginRight: '8px' }} />
                                 {selectedLanguage === 'français' ? 'Thème Sombre' : 'Dark Theme'}
-                            </NavDropdown.Item>²    
+                            </NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => handleThemeChange('system')}>
+                                <img src={computerLogo} width="16" alt="System" style={{ marginRight: '8px' }} />
+                                {selectedLanguage === 'français' ? 'Thème Système' : 'System Theme'}
+                            </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
@@ -218,4 +183,3 @@ const PortfolioNavbar = () => {
 };
 
 export default PortfolioNavbar;
-

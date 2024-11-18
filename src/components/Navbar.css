@@ -1,7 +1,8 @@
 /* ----- BASE STYLES ----- */
 .top-navbar {
     width: 100%;
-    height: 50px;
+    height: 70px;
+    /* Augmenter la hauteur de la barre de navigation */
     z-index: 99999;
     padding-top: 0.4rem;
     transition: background-color 0.5s ease-out, color 0.3s ease-out;
@@ -9,6 +10,11 @@
     top: 0;
     left: 0;
     right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    /* S'assurer que la barre de navigation ne dépasse pas l'écran */
 }
 
 .navbar {
@@ -25,6 +31,7 @@
     color: #CBD5E1;
 }
 
+/* Styles pour les liens dans la barre de navigation (avant scroll) */
 .top-navbar.transparent-navbar .nav-link,
 .top-navbar.transparent-navbar .brand-link,
 .top-navbar.transparent-navbar .navbar-brand {
@@ -34,6 +41,12 @@
 /* Styles pour les icônes de thème dans la barre de navigation (avant scroll) */
 .top-navbar.transparent-navbar .navbar-theme-icon {
     filter: brightness(0) invert(1);
+}
+
+/* ----- HAMBURGER MENU (avant scroll) ----- */
+.top-navbar.transparent-navbar .navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+    /* Changer la couleur du hamburger avant le scroll */
 }
 
 /* ----- LIGHT THEME SCROLLED ----- */
@@ -52,6 +65,11 @@ html[data-theme='light'] .top-navbar.scrolled-navbar .navbar-theme-icon {
     filter: none;
 }
 
+html[data-theme='light'] .top-navbar.scrolled-navbar .navbar-toggler-icon {
+    filter: none;
+    /* Retour à la couleur normale du hamburger en mode light */
+}
+
 /* ----- DARK THEME SCROLLED ----- */
 html[data-theme='dark'] .top-navbar.scrolled-navbar {
     background-color: #1F2937;
@@ -66,6 +84,11 @@ html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-brand {
 
 html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-theme-icon {
     filter: none;
+}
+
+html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-toggler-icon {
+    filter: invert(1);
+    /* Inverser la couleur du hamburger en mode dark */
 }
 
 /* ----- HOVER STYLES ----- */
@@ -109,10 +132,20 @@ html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-theme-icon {
 }
 
 @media (max-width: 767px) {
+    .top-navbar {
+        height: 80px;
+        /* Augmenter la hauteur de la barre de navigation sur petits écrans */
+        padding-top: 0;
+        /* Enlever le padding du haut */
+        padding-bottom: 0;
+        /* Enlever le padding du bas */
+    }
+
     .navbar-collapse {
         display: none;
         position: absolute;
-        top: 50px;
+        top: 80px;
+        /* Placer le menu sous la barre de navigation */
         left: 0;
         width: 100%;
         background-color: #F8FAFC;
@@ -128,6 +161,7 @@ html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-theme-icon {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
 
     .nav-link {
@@ -143,14 +177,30 @@ html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-theme-icon {
         background: rgba(8, 145, 178, 0.1);
         transition: all ease-out 0.3s;
     }
+
+    /* ----- HAMBURGER MENU ----- */
+    .navbar-toggler {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        /* Centrer verticalement */
+        z-index: 9999;
+    }
 }
 
-/* Logo général */
+/* ----- Logo Général ----- */
 #logo {
-    width: 42px;
-    height: 42px;
+    width: 35px;
+    /* Réduire la taille du logo */
+    height: 35px;
     padding: 5px;
+    object-fit: contain;
     transition: filter 0.3s ease;
+    max-width: 100%;
+    /* Empêche le logo de déborder horizontalement */
+    flex-shrink: 1;
+    /* Permet au logo de se réduire si nécessaire */
 }
 
 /* ----- MENU DÉROULANT LANGUAGE ----- */
@@ -217,7 +267,7 @@ html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-theme-icon {
 }
 
 /* ----- FLAG SIZE ----- */
-.language-dropdown .dropdown-item > img {
+.language-dropdown .dropdown-item>img {
     width: 16px !important;
     height: 16px !important;
     margin-right: 8px !important;
