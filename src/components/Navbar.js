@@ -12,7 +12,6 @@ const PortfolioNavbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeTab, setActiveTab] = useState('#home');
     const { theme, toggleTheme } = useContext(ThemeContext);
-    const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false); // Menu langue ouvert/fermé
     const [selectedLanguage, setSelectedLanguage] = useState('français'); // Langue sélectionnée
 
     useEffect(() => {
@@ -24,12 +23,6 @@ const PortfolioNavbar = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
-
-    useEffect(() => {
-        // Détecte la langue actuelle en fonction de l'URL
-        const currentLang = window.location.pathname.includes('/en') ? 'anglais' : 'français';
-        setSelectedLanguage(currentLang);
     }, []);
 
     const handleTabClick = (tabId) => {
@@ -44,6 +37,8 @@ const PortfolioNavbar = () => {
             toggleTheme(selectedTheme);
         }
     };
+
+    const themeIcon = theme === 'dark' ? moonLogo : theme === 'light' ? sunLogo : computerLogo;
 
     const navbarStyle = {
         backgroundColor: isScrolled
@@ -61,16 +56,10 @@ const PortfolioNavbar = () => {
         transition: 'background-color 0.3s ease, color 0.3s ease',
     };
 
-    const toggleLanguageMenu = () => {
-        setIsLanguageMenuOpen(!isLanguageMenuOpen);
+    const iconStyle = {
+        filter: theme === 'dark' ? 'invert(1)' : 'invert(0)',
+        transition: 'filter 0.3s ease',
     };
-
-    const handleLanguageSelect = (language, href) => {
-        setSelectedLanguage(language);
-        window.location.href = href; // Redirige vers la langue sélectionnée
-    };
-
-    const themeIcon = theme === 'dark' ? moonLogo : theme === 'light' ? sunLogo : computerLogo;
 
     return (
         <Navbar
@@ -87,91 +76,69 @@ const PortfolioNavbar = () => {
                 <Navbar.Toggle aria-controls="top-nav-items" />
                 <Navbar.Collapse id="top-nav-items" className="dynamic-navbar">
                     <Nav className="ms-auto">
-                        <Nav.Link
-                            href="#home"
-                            className={`nav-link ${activeTab === '#home' ? 'active' : ''}`}
-                            onClick={() => handleTabClick('#home')}
-                        >
-                            {selectedLanguage === 'français' ? 'Accueil' : 'Home'}
-                        </Nav.Link>
-                        <Nav.Link
-                            href="#about"
-                            className={`nav-link ${activeTab === '#about' ? 'active' : ''}`}
-                            onClick={() => handleTabClick('#about')}
-                        >
-                            {selectedLanguage === 'français' ? 'À propos' : 'About'}
-                        </Nav.Link>
-                        <Nav.Link
-                            href="#skills"
-                            className={`nav-link ${activeTab === '#skills' ? 'active' : ''}`}
-                            onClick={() => handleTabClick('#skills')}
-                        >
-                            {selectedLanguage === 'français' ? 'Compétences' : 'Skills'}
-                        </Nav.Link>
-                        <Nav.Link
-                            href="#experiences"
-                            className={`nav-link ${activeTab === '#experiences' ? 'active' : ''}`}
-                            onClick={() => handleTabClick('#experiences')}
-                        >
-                            {selectedLanguage === 'français' ? 'Expériences' : 'Experiences'}
-                        </Nav.Link>
-                        <Nav.Link
-                            href="#education"
-                            className={`nav-link ${activeTab === '#education' ? 'active' : ''}`}
-                            onClick={() => handleTabClick('#education')}
-                        >
-                            {selectedLanguage === 'français' ? 'Parcours académique' : 'Education'}
-                        </Nav.Link>
-                        <Nav.Link
-                            href="/portfolio-georges/posts"
-                            className={`nav-link ${activeTab === '/portfolio-georges/posts' ? 'active' : ''}`}
-                            onClick={() => handleTabClick('/portfolio-georges/posts')}
-                        >
-                            {selectedLanguage === 'français' ? 'Articles' : 'Articles'}
-                        </Nav.Link>
+                        {/* Liens de navigation */}
+                        {[
+                            { href: '#home', label: 'Accueil', enLabel: 'Home' },
+                            { href: '#about', label: 'À propos', enLabel: 'About' },
+                            { href: '#skills', label: 'Compétences', enLabel: 'Skills' },
+                            { href: '#experiences', label: 'Expériences', enLabel: 'Experiences' },
+                            { href: '#education', label: 'Parcours académique', enLabel: 'Education' },
+                            { href: '/portfolio-georges/posts', label: 'Articles', enLabel: 'Articles' },
+                        ].map(({ href, label, enLabel }) => (
+                            <Nav.Link
+                                key={href}
+                                href={href}
+                                className={`nav-link ${activeTab === href ? 'active' : ''}`}
+                                onClick={() => handleTabClick(href)}
+                            >
+                                {selectedLanguage === 'français' ? label : enLabel}
+                            </Nav.Link>
+                        ))}
 
-                        {/* Language Selector */}
+                        {/* Sélecteur de langue */}
                         <NavDropdown
                             title={
                                 <span>
-                                    <span className={`flag-icon ${selectedLanguage === 'français' ? 'flag-icon-fr' : 'flag-icon-gb'}`}
+                                    <span
+                                        className={`flag-icon ${
+                                            selectedLanguage === 'français' ? 'flag-icon-fr' : 'flag-icon-gb'
+                                        }`}
                                         style={{ marginRight: '8px' }}
                                     ></span>
                                     {selectedLanguage}
                                 </span>
                             }
                             id="languageSelector"
-                            onToggle={toggleLanguageMenu}
                             className="language-dropdown"
                         >
                             <NavDropdown.Item
-                                onClick={() => handleLanguageSelect('français', '/portfolio-georges')}
+                                onClick={() => setSelectedLanguage('français')}
                             >
                                 Français
                             </NavDropdown.Item>
                             <NavDropdown.Item
-                                onClick={() => handleLanguageSelect('anglais', '/en/portfolio-georges')}
+                                onClick={() => setSelectedLanguage('anglais')}
                             >
                                 English
                             </NavDropdown.Item>
                         </NavDropdown>
 
-                        {/* Theme Selector */}
+                        {/* Sélecteur de thème */}
                         <NavDropdown
-                            title={<img src={themeIcon} alt="Theme Icon" width="20" />}
+                            title={<img src={themeIcon} alt="Theme Icon" style={iconStyle} width="20" />}
                             id="themeSelector"
                             className="theme-dropdown"
                         >
                             <NavDropdown.Item onClick={() => handleThemeChange('light')}>
-                                <img src={sunLogo} width="16" alt="Light" style={{ marginRight: '8px' }} />
+                                <img src={sunLogo} alt="Light Theme" style={{ marginRight: '8px' }} width="16" />
                                 {selectedLanguage === 'français' ? 'Thème Clair' : 'Light Theme'}
                             </NavDropdown.Item>
                             <NavDropdown.Item onClick={() => handleThemeChange('dark')}>
-                                <img src={moonLogo} width="16" alt="Dark" style={{ marginRight: '8px' }} />
+                                <img src={moonLogo} alt="Dark Theme" style={{ marginRight: '8px' }} width="16" />
                                 {selectedLanguage === 'français' ? 'Thème Sombre' : 'Dark Theme'}
                             </NavDropdown.Item>
                             <NavDropdown.Item onClick={() => handleThemeChange('system')}>
-                                <img src={computerLogo} width="16" alt="System" style={{ marginRight: '8px' }} />
+                                <img src={computerLogo} alt="System Theme" style={{ marginRight: '8px' }} width="16" />
                                 {selectedLanguage === 'français' ? 'Thème Système' : 'System Theme'}
                             </NavDropdown.Item>
                         </NavDropdown>
@@ -183,3 +150,4 @@ const PortfolioNavbar = () => {
 };
 
 export default PortfolioNavbar;
+

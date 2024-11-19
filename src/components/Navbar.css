@@ -2,7 +2,6 @@
 .top-navbar {
     width: 100%;
     height: 70px;
-    /* Augmenter la hauteur de la barre de navigation */
     z-index: 99999;
     padding-top: 0.4rem;
     transition: background-color 0.5s ease-out, color 0.3s ease-out;
@@ -14,9 +13,9 @@
     align-items: center;
     justify-content: space-between;
     max-width: 100%;
-    /* S'assurer que la barre de navigation ne dépasse pas l'écran */
 }
 
+/* Barre de navigation */
 .navbar {
     display: flex;
     align-items: center;
@@ -25,28 +24,24 @@
     padding: 0;
 }
 
-/* Styles avant scroll : texte et logo de couleur #CBD5E1 */
+/* ----- TRANSPARENT NAVBAR (avant scroll) ----- */
 .top-navbar.transparent-navbar {
     background-color: transparent;
     color: #CBD5E1;
 }
 
-/* Styles pour les liens dans la barre de navigation (avant scroll) */
 .top-navbar.transparent-navbar .nav-link,
 .top-navbar.transparent-navbar .brand-link,
 .top-navbar.transparent-navbar .navbar-brand {
     color: #CBD5E1;
 }
 
-/* Styles pour les icônes de thème dans la barre de navigation (avant scroll) */
 .top-navbar.transparent-navbar .navbar-theme-icon {
     filter: brightness(0) invert(1);
 }
 
-/* ----- HAMBURGER MENU (avant scroll) ----- */
 .top-navbar.transparent-navbar .navbar-toggler-icon {
     filter: brightness(0) invert(1);
-    /* Changer la couleur du hamburger avant le scroll */
 }
 
 /* ----- LIGHT THEME SCROLLED ----- */
@@ -67,7 +62,6 @@ html[data-theme='light'] .top-navbar.scrolled-navbar .navbar-theme-icon {
 
 html[data-theme='light'] .top-navbar.scrolled-navbar .navbar-toggler-icon {
     filter: none;
-    /* Retour à la couleur normale du hamburger en mode light */
 }
 
 /* ----- DARK THEME SCROLLED ----- */
@@ -83,12 +77,11 @@ html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-brand {
 }
 
 html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-theme-icon {
-    filter: none;
+    filter: brightness(0) invert(1);
 }
 
 html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-toggler-icon {
     filter: invert(1);
-    /* Inverser la couleur du hamburger en mode dark */
 }
 
 /* ----- HOVER STYLES ----- */
@@ -99,15 +92,15 @@ html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-toggler-icon {
     text-decoration-color: #0891B2;
     background: rgba(8, 145, 178, 0.1);
     border-bottom: 2px solid #0891B2;
-    transition: 0.3s ease-out;
+    transition: all 0.3s ease;
 }
 
 /* ----- ACTIVE LINK STYLES ----- */
 .top-navbar .navbar-nav .active {
-    color: rgb(8, 145, 178) !important;
+    color: #0891B2 !important;
     background: rgba(8, 145, 178, 0.1);
-    transition: 0.3s ease-out;
-    border-bottom: 2px solid rgb(8, 145, 178) !important;
+    border-bottom: 2px solid #0891B2 !important;
+    transition: all 0.3s ease;
 }
 
 /* ----- RESPONSIVE AND DROPDOWN MENU STYLES ----- */
@@ -134,23 +127,18 @@ html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-toggler-icon {
 @media (max-width: 767px) {
     .top-navbar {
         height: 80px;
-        /* Augmenter la hauteur de la barre de navigation sur petits écrans */
-        padding-top: 0;
-        /* Enlever le padding du haut */
-        padding-bottom: 0;
-        /* Enlever le padding du bas */
+        padding: 0;
     }
 
     .navbar-collapse {
         display: none;
         position: absolute;
         top: 80px;
-        /* Placer le menu sous la barre de navigation */
         left: 0;
         width: 100%;
         background-color: #F8FAFC;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease-out;
+        transition: all 0.3s ease;
     }
 
     .navbar-collapse.show {
@@ -175,35 +163,28 @@ html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-toggler-icon {
         color: #0891B2;
         border-bottom: 2px solid #0891B2;
         background: rgba(8, 145, 178, 0.1);
-        transition: all ease-out 0.3s;
+        transition: all 0.3s ease;
     }
 
-    /* ----- HAMBURGER MENU ----- */
     .navbar-toggler {
         position: absolute;
         right: 15px;
         top: 50%;
         transform: translateY(-50%);
-        /* Centrer verticalement */
         z-index: 9999;
     }
 }
 
-/* ----- Logo Général ----- */
+/* ----- LOGO ----- */
 #logo {
     width: 35px;
-    /* Réduire la taille du logo */
     height: 35px;
     padding: 5px;
     object-fit: contain;
     transition: filter 0.3s ease;
-    max-width: 100%;
-    /* Empêche le logo de déborder horizontalement */
-    flex-shrink: 1;
-    /* Permet au logo de se réduire si nécessaire */
 }
 
-/* ----- MENU DÉROULANT LANGUAGE ----- */
+/* ----- LANGUAGE DROPDOWN ----- */
 .language-dropdown {
     font-size: 14px;
     color: inherit;
@@ -234,36 +215,26 @@ html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-toggler-icon {
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #F8FAFC;
-    border: none;
 }
 
-/* ----- RESPONSIVE MENU DÉROULANT ----- */
+/* ----- RESPONSIVE LANGUAGE DROPDOWN ----- */
 @media (max-width: 767px) {
     .language-dropdown .dropdown-menu {
         width: 100%;
         text-align: center;
-        background-color: #F8FAFC;
     }
 
     .language-dropdown .dropdown-item {
         padding: 12px;
         color: #1E293B;
     }
-
-    .language-dropdown .dropdown-item:hover {
-        background-color: rgba(8, 145, 178, 0.1);
-    }
 }
 
-/* ----- ICONS & TEXT TRANSITIONS ----- */
+/* ----- ICON & TEXT TRANSITIONS ----- */
 .top-navbar .nav-link,
 .top-navbar .brand-link,
 .top-navbar .navbar-theme-icon {
     transition: color 0.3s ease, filter 0.3s ease;
-}
-
-.top-navbar .navbar-theme-icon {
-    filter: brightness(0) invert(1);
 }
 
 /* ----- FLAG SIZE ----- */
@@ -271,5 +242,4 @@ html[data-theme='dark'] .top-navbar.scrolled-navbar .navbar-toggler-icon {
     width: 16px !important;
     height: 16px !important;
     margin-right: 8px !important;
-    /* Un petit espace entre le drapeau et le texte */
 }
