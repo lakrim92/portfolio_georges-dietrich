@@ -1,33 +1,21 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { LanguageProvider } from './contexts/LanguageContext';
-import Hero from './components/Hero';
-import Navbar from './components/Navbar';
-import PortfolioFrench from './pages/fr/PortfolioFrench';  // Page en français
-import PortfolioEnglish from './pages/en/PortfolioEnglish';  // Page en anglais
-import './App.css';
-import About from './components/About';
+import { LanguageProvider } from './contexts/LanguageContext'; // Importation du LanguageProvider
+import PortfolioNavbar from './components/Navbar'; // Votre composant de barre de navigation
+import ThemeProvider from './contexts/ThemeContext'; // Changement de l'importation
+import Hero from './components/Hero'; // Assurez-vous que Hero est bien importé
+import About from './components/About'; // Assurez-vous que About est bien importé
 
 function App() {
-  return (
-    <LanguageProvider>
-    <Router>
-      <div className="App">
-        <Navbar />
-        <Hero />
-        <About />
-        <Routes>
-          {/* Route pour la version française */}
-          <Route path="/fr" element={<PortfolioFrench />} />
-          {/* Route pour la version anglaise */}
-          <Route path="/en" element={<PortfolioEnglish />} />
-        </Routes>
-      </div>
-      </Router>
-      </LanguageProvider>
-  );
+    return (
+        <LanguageProvider> {/* Fournit le contexte de la langue à tous les composants enfants */}
+            <ThemeProvider> {/* Fournit le contexte du thème à tous les composants enfants */}
+                <PortfolioNavbar /> {/* Votre composant de barre de navigation */}
+                <Hero /> {/* Composant Hero pour la première section */}
+                <About /> {/* Composant About pour la section À propos */}
+                {/* Ajoutez ici d'autres composants ou pages */}
+            </ThemeProvider>
+        </LanguageProvider>
+    );
 }
 
 export default App;
-
-
