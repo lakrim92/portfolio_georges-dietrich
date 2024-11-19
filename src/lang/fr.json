@@ -1,0 +1,25 @@
+{
+  "home": {
+    "home": "Accueil",
+    "title": "Salut, je suis Georges",
+    "description": [
+      "Je suis développeur web fullstack",
+      "Je suis DevOps",
+      "J'aime les serveurs et la cybersécurité",
+      "Je travaille sur des projets open source",
+      "J'aime travailler sur des projets passionnants"
+    ]
+  },
+  "about": {
+    "about": "À propos de moi"
+  },
+  "skills": {
+    "skills": "Compétences"
+  },
+  "experiences": {
+    "experiences": "Expériences"
+  },
+  "education": {
+    "education": "Parcours académique"
+  }
+}

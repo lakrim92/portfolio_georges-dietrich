@@ -1,0 +1,25 @@
+/* Example CSS for About section (About.css) */
+.about-section {
+    padding: 60px 0;
+}
+
+.about-section .social-link li {
+    margin: 0 10px;
+}
+
+.about-section .certificate-badge img {
+    width: 100%;
+    height: auto;
+}
+
+.btn-dark {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-dark:hover {
+    background-color: #555;
+}

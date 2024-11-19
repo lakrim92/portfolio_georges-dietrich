@@ -101,7 +101,7 @@ const PortfolioNavbar = () => {
                                 <span>
                                     <span
                                         className={`flag-icon ${
-                                            selectedLanguage === 'français' ? 'flag-icon-fr' : 'flag-icon-gb'
+                                            selectedLanguage === 'Français' ? 'flag-icon-fr' : 'flag-icon-gb'
                                         }`}
                                         style={{ marginRight: '8px' }}
                                     ></span>
@@ -112,13 +112,15 @@ const PortfolioNavbar = () => {
                             className="language-dropdown"
                         >
                             <NavDropdown.Item
-                                onClick={() => setSelectedLanguage('français')}
+                                onClick={() => setSelectedLanguage('Français')}
                             >
+                                <span className="flag-icon flag-icon-fr" style={{ width: '16px', height: '16px', marginRight: '8px' }}></span>
                                 Français
                             </NavDropdown.Item>
                             <NavDropdown.Item
-                                onClick={() => setSelectedLanguage('anglais')}
+                                onClick={() => setSelectedLanguage('English')}
                             >
+                                <span className="flag-icon flag-icon-gb" style={{ width: '16px', height: '16px', marginRight: '8px' }}></span>
                                 English
                             </NavDropdown.Item>
                         </NavDropdown>
@@ -131,15 +133,15 @@ const PortfolioNavbar = () => {
                         >
                             <NavDropdown.Item onClick={() => handleThemeChange('light')}>
                                 <img src={sunLogo} alt="Light Theme" style={{ marginRight: '8px' }} width="16" />
-                                {selectedLanguage === 'français' ? 'Thème Clair' : 'Light Theme'}
+                                {selectedLanguage === 'Français' ? 'Thème Clair' : 'Light Theme'}
                             </NavDropdown.Item>
                             <NavDropdown.Item onClick={() => handleThemeChange('dark')}>
                                 <img src={moonLogo} alt="Dark Theme" style={{ marginRight: '8px' }} width="16" />
-                                {selectedLanguage === 'français' ? 'Thème Sombre' : 'Dark Theme'}
+                                {selectedLanguage === 'Français' ? 'Thème Sombre' : 'Dark Theme'}
                             </NavDropdown.Item>
                             <NavDropdown.Item onClick={() => handleThemeChange('system')}>
                                 <img src={computerLogo} alt="System Theme" style={{ marginRight: '8px' }} width="16" />
-                                {selectedLanguage === 'français' ? 'Thème Système' : 'System Theme'}
+                                {selectedLanguage === 'Français' ? 'Thème Système' : 'System Theme'}
                             </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
@@ -150,4 +152,3 @@ const PortfolioNavbar = () => {
 };
 
 export default PortfolioNavbar;
-
