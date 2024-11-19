@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/portfolio_georges-dietrich/static/css/main.d3532ba3.css",
-    "main.js": "/portfolio_georges-dietrich/static/js/main.60732efd.js",
+    "main.css": "/portfolio_georges-dietrich/static/css/main.ee259c90.css",
+    "main.js": "/portfolio_georges-dietrich/static/js/main.f5c82b41.js",
     "static/js/488.a500b9d7.chunk.js": "/portfolio_georges-dietrich/static/js/488.a500b9d7.chunk.js",
     "static/media/do.svg": "/portfolio_georges-dietrich/static/media/do.3ecb625b75ec64be4376.svg",
     "static/media/inverted-logo.png": "/portfolio_georges-dietrich/static/media/inverted-logo.92de245e76f32dc6b6bc.png",
@@ -15,6 +15,7 @@
     "static/media/sv.svg": "/portfolio_georges-dietrich/static/media/sv.2b995d455aa93dcba0cf.svg",
     "static/media/pe.svg": "/portfolio_georges-dietrich/static/media/pe.38abe80e0cb9775bea8c.svg",
     "static/media/me.svg": "/portfolio_georges-dietrich/static/media/me.0c03b01f0a036dd1e720.svg",
+    "static/media/imgProfil.png": "/portfolio_georges-dietrich/static/media/imgProfil.874c41d4f33f14e47a88.png",
     "static/media/ai.svg": "/portfolio_georges-dietrich/static/media/ai.8eb1e0e559b7fb35fed9.svg",
     "static/media/bz.svg": "/portfolio_georges-dietrich/static/media/bz.9e8153a1022c0f4282f8.svg",
     "static/media/gs.svg": "/portfolio_georges-dietrich/static/media/gs.e6ba1f5421701bbb2304.svg",
@@ -274,12 +275,12 @@
     "static/media/pl.svg": "/portfolio_georges-dietrich/static/media/pl.cd835d05865e496ff6b8.svg",
     "static/media/de.svg": "/portfolio_georges-dietrich/static/media/de.6435bf24d148ca7248e7.svg",
     "static/media/bd.svg": "/portfolio_georges-dietrich/static/media/bd.0ad8c443ef4d47ea0497.svg",
-    "main.d3532ba3.css.map": "/portfolio_georges-dietrich/static/css/main.d3532ba3.css.map",
-    "main.60732efd.js.map": "/portfolio_georges-dietrich/static/js/main.60732efd.js.map",
+    "main.ee259c90.css.map": "/portfolio_georges-dietrich/static/css/main.ee259c90.css.map",
+    "main.f5c82b41.js.map": "/portfolio_georges-dietrich/static/js/main.f5c82b41.js.map",
     "488.a500b9d7.chunk.js.map": "/portfolio_georges-dietrich/static/js/488.a500b9d7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d3532ba3.css",
-    "static/js/main.60732efd.js"
+    "static/css/main.ee259c90.css",
+    "static/js/main.f5c82b41.js"
   ]
 }
